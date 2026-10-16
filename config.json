@@ -1,21 +1,37 @@
+
 {
-  "log": { "loglevel": "warning" },
+  "log": {
+    "loglevel": "info"
+  },
   "inbounds": [
     {
-      "tag": "vless-httpupgrade",
+      "tag": "vless-xhttp",
       "listen": "0.0.0.0",
       "port": 8080,
       "protocol": "vless",
       "settings": {
-        "clients": [{ "id": "07b807c7-0130-4de7-887c-cd7d5108a0c2", "level": 0 }],
+        "clients": [
+          {
+            "id": "07b807c7-0130-4de7-887c-cd7d5108a0c2",
+            "level": 0
+          }
+        ],
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "httpupgrade",
+        "network": "xhttp",
         "security": "none",
-        "httpupgradeSettings": { "path": "/upgrade" }
+        "xhttpSettings": {
+          "path": "/xhttp",
+          "mode": "packet-up"
+        }
       }
     }
   ],
-  "outbounds": [{ "protocol": "freedom", "tag": "direct" }]
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    }
+  ]
 }
