@@ -1,6 +1,22 @@
+
 {
   "log": {
-    "loglevel": "info"
+    "loglevel": "debug"
+  },
+  "dns": {
+    "servers": [
+      {
+        "address": "8.8.8.8",
+        "domains": [],
+        "skipFallback": false
+      },
+      {
+        "address": "1.1.1.1",
+        "domains": [],
+        "skipFallback": false
+      }
+    ],
+    "queryStrategy": "UseIPv4"
   },
   "inbounds": [
     {
@@ -11,8 +27,7 @@
       "settings": {
         "clients": [
           {
-            "id": "07b807c7-0130-4de7-887c-cd7d5108a0c2",
-            "level": 0
+            "id": "07b807c7-0130-4de7-887c-cd7d5108a0c2"
           }
         ],
         "decryption": "none"
@@ -24,6 +39,14 @@
           "path": "/xhttp",
           "mode": "auto"
         }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ],
+        "routeOnly": true
       }
     }
   ],
@@ -45,13 +68,20 @@
           }
         ]
       }
+    },
+    {
+      "tag": "block",
+      "protocol": "blackhole"
     }
   ],
   "routing": {
+    "domainStrategy": "AsIs",
     "rules": [
       {
         "type": "field",
-        "inboundTag": ["vless-xhttp"],
+        "inboundTag": [
+          "vless-xhttp"
+        ],
         "outboundTag": "droplet-exit"
       }
     ]
