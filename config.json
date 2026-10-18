@@ -23,7 +23,7 @@
         "security": "none",
         "xhttpSettings": {
           "path": "/xhttp",
-          "mode": "packet-up"
+          "mode": "auto"
         }
       }
     }
